@@ -1,0 +1,37 @@
+#/bin/zsh
+prompt_nailyk_help () {
+  cat <<'EOF'
+This prompt is color-scheme-able.  You can invoke it thus:
+
+  prompt nailyk [<color1>]
+
+where the color is for the right-hand prompt.
+
+This prompt was stolen from Colin Walters <walters@debian.org>,
+who gives credit to Michel Daenzer <daenzer@debian.org>.
+EOF
+}
+
+prompt_nailyk_setup () {
+
+if [ $(id -u) = 0 ]; then
+    c1='red'
+else
+    c1='cyan'       #username
+fi
+c2='yellow'     #hostname
+c3='green'      #path
+c4='red'        #error
+
+
+if [[ "$TERM" != "dumb" ]]; then
+    export PROMPT="%F{$c1}%n%f@%F{$c2}%m%f %(?,%F{green}%B:%)%b,%F{yellow}%? %F{$c4}%B:(%b)%f%F{white}%B %# %b%f"
+    export RPROMPT="%F{${1:-$c3}}%~%f"
+else
+    export PROMPT="%(?..[%?] )%n@%m:%~> "
+fi
+
+  prompt_opts=(cr percent)
+}
+
+prompt_nailyk_setup "$@"

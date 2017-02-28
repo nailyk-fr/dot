@@ -1,0 +1,34 @@
+startup_message off
+activity "%c activity -> %n%f %t"
+caption always "%{= Wk}%-w%{= Bw}%n %t%{-}%+w %-="
+#caption always           "%?%F%{= Kk}%:%{=u kR}%?  %h %-024=%{+b} %C%a %D %d %M %Y%{= db}"
+#hardstatus alwayslastline "%{= kR} %-Lw%{=b Kk} %n%f %t %{-}%+Lw %=%{= dd}"
+#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
+#caption always 
+#caption always "%{= kw}%?%-Lw%?%{Kw}%n*%f %t%?(%u)%?%{kw}%?%+Lw%? %=%{= dw} %H "
+vbell off
+term screen-256color
+
+bind 'K' kill
+bind 'W' windowlist
+
+defutf8 on # nouvelles fenêtres en utf-8
+utf8 on on # mode utf-8-aware dans les deux sens
+
+# F8 to turn the status bar off
+#bindkey -k k8 hardstatus alwayslastline
+# F9 to turn the status bar on
+#bindkey -k k9 hardstatus alwaysignore
+# F5 and F6 to move one screen forward or backward
+#bind F7 to change focus
+bindkey -k k7 focus up
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I" 
+# tell screen how to set colors. AB = background, AF=foreground 
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+# erase background with current bg color 
+#defbce "on"
+
+

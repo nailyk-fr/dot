@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+flashrom () {
+    if [[  "$#" -eq 0  ]] then
+        echo usage: flashrom fichier \[-s num device\]; return 1; fi
+	if [[ -n "$2" ]] then
+		DEV="-s $2"
+	else
+		DEV=""
+	fi
+
+    adb $DEV push $1 /tmp/$(basename $1) && \
+    adb $DEV shell twrp install /tmp/$(basename $1)
+
+}
+
+flashboot () {
+    if [[  "$#" -eq 0  ]] then
+        echo usage: $0 fichier \[-s num device\]; return 1; fi
+    if [[ -n "$2" ]] then
+        DEV="-s $2"
+    else
+        DEV=""
+    fi  
+	adb $DEV reboot bootloader
+	fastboot $DEV flash boot $1
+	fastboot $DEV reboot
+}
+
+remount () {
+	if [[  "$#" -eq 0  ]] then
+		DEV=""
+	else
+		DEV="-s $1"
+	fi
+
+    adb root && \
+    adb $DEV shell mount -o remount,rw /system
+
+
+}
