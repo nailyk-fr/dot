@@ -2,15 +2,17 @@
 
 flashrom () {
     if [[  "$#" -eq 0  ]] then
-        echo usage: flashrom fichier \[-s num device\]; return 1; fi
+        echo usage: flashrom fichier \[-s num device\]; return 1; 
+	fi
 	if [[ -n "$2" ]] then
 		DEV="-s $2"
+		echo "device used: $DEV"
 	else
 		DEV=""
 	fi
 
-    adb $DEV push $1 /tmp/$(basename $1) && \
-    adb $DEV shell twrp install /tmp/$(basename $1)
+    eval adb "$DEV" push $1 /tmp/$(basename $1) && \
+    eval adb $DEV shell twrp install /tmp/$(basename $1)
 
 }
 
@@ -22,9 +24,9 @@ flashboot () {
     else
         DEV=""
     fi  
-	adb $DEV reboot bootloader
-	fastboot $DEV flash boot $1
-	fastboot $DEV reboot
+	eval adb "$DEV" reboot bootloader && \
+	eval fastboot "$DEV" flash boot $1 && \
+	eval fastboot "$DEV" reboot
 }
 
 remount () {
