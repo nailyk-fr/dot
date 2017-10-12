@@ -73,6 +73,13 @@ alias la='ls -A --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='grep --exclude-dir=.git --exclude-dir=.repo -Rn'
+alias gd='git diff HEAD^'
+alias gl='git log --pretty=oneline --abbrev-commit'
+alias bb='time mka bootimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo -e "\007"'
+alias bt='time mka recoveryimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo -e "\007"'
+alias br='time mka cookies 2>&1 | tee /tmp/buildFull && echo -e "\007" || echo -e "\007"'
+alias avc='./external/selinux/prebuilts/bin/audit2allow -p out/target/product/leo/root/sepolicy -i '
+
 
 
 
