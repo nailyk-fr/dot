@@ -33,6 +33,7 @@ setopt EXTENDED_HISTORY
 #fi
 #history_prompt1="%{$fg_bold[$history_color]%}[%{$reset_color%}"
 
+PATH="$HOME/bin:$PATH"
 
 
 case "$TERM" in 
@@ -65,6 +66,7 @@ esac
 autoload -Uz promptinit
 promptinit
 prompt nailyk
+setopt prompt_subst
 
 
 alias ls='ls --color=auto'
@@ -74,22 +76,28 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='grep --exclude-dir=.git --exclude-dir=.repo -Rn'
 alias gd='git diff HEAD^'
-alias gl='git log --pretty=oneline --abbrev-commit'
+alias gl='git log --pretty=oneline --abbrev-commit --decorate'
 alias bb='time mka bootimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo -e "\007"'
 alias bt='time mka recoveryimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo -e "\007"'
 alias br='time mka cookies 2>&1 | tee /tmp/buildFull && echo -e "\007" || echo -e "\007"'
-alias avc='./external/selinux/prebuilts/bin/audit2allow -p out/target/product/leo/root/sepolicy -i '
+alias avc='./external/selinux/prebuilts/bin/audit2allow -p out/target/product/z3/root/sepolicy -i '
 
-
-
+#export USE_NINJA=false
+export JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8192m"
+export ANDROID_JACK_VM_ARGS=$JACK_SERVER_VM_ARGUMENTS
+export VISUAL=vim
+export EDITOR="$VISUAL"
+export WITH_SU=true
 
 ssh() {
     case "$TERM" in 
 	  ## on est dans un tmux
 	(screen)
-	    tmux rename-window "$*"
+	    #tmux rename-window "$*"
+	    printf "\033k$*\033\\"
 	    command ssh "$@"
-	    tmux rename-window "${USER}@${HOST}"
+	    #tmux rename-window "${USER}@${HOST}"
+	    printf "\033k${HOST}\033\\"
 	;;
 	  ## on est dans un screen
 	(screen-256color)
@@ -102,7 +110,6 @@ ssh() {
 	;;
     esac
 }
-
 
 ins_sudo () { zle beginning-of-line; zle -U "sudo " }
 zle -N ins-sudo ins_sudo
