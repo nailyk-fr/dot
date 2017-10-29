@@ -1,4 +1,4 @@
-#/bin/zsh
+#!/bin/zsh
 prompt_nailyk_help () {
   cat <<'EOF'
 This prompt is color-scheme-able.  You can invoke it thus:
@@ -14,24 +14,51 @@ EOF
 
 prompt_nailyk_setup () {
 
-if [ $(id -u) = 0 ]; then
+if [[ "$(whoami)" == "root" ]]; then
     c1='red'
 else
     c1='cyan'       #username
 fi
-c2='yellow'     #hostname
+
+if [ -z "$c2" ]; then
+    c2='green'     #hostname
+fi
 c3='green'      #path
 c4='red'        #error
+
+autoload -Uz vcs_info
+#zstyle ':vcs_info:*' actionformats \
+#    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+#zstyle ':vcs_info:*' formats       \
+#    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+
+zstyle ':vcs_info:*' actionformats \
+    '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats       \   
+    '%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+
+zstyle ':vcs_info:*' enable git cvs svn 
 
 
 if [[ "$TERM" != "dumb" ]]; then
     export PROMPT="%F{$c1}%n%f@%F{$c2}%m%f %(?,%F{green}%B:%)%b,%F{yellow}%? %F{$c4}%B:(%b)%f%F{white}%B %# %b%f"
-    export RPROMPT="%F{${1:-$c3}}%~%f"
+    export RPROMPT=$'$(vcs_info_wrapper)'"%F{${1:-$c3}}%~%f"
 else
     export PROMPT="%(?..[%?] )%n@%m:%~> "
 fi
 
   prompt_opts=(cr percent)
 }
+
+vcs_info_wrapper() {
+  vcs_info
+  if [ -n "$vcs_info_msg_0_" ]; then
+    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+  fi  
+}
+#RPROMPT=$'$(vcs_info_wrapper)'
+
+
 
 prompt_nailyk_setup "$@"
