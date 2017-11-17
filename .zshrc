@@ -122,5 +122,5 @@ bindkey "^s" ins-sudo
 export LC_ALL=fr_FR.UTF-8
 autoload bashcompinit
 bashcompinit
-source /usr/share/bash-completion/completions/VBoxManage
-source ~/.zshfct_android
+FILE=/usr/share/bash-completion/completions/VBoxManage && test -f $FILE && source $FILE
+FILE=~/.zshfct_android && test -f $FILE && source $FILE
