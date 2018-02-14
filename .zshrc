@@ -87,6 +87,8 @@ alias br='time mka cookies 2>&1 | tee /tmp/buildFull && echo -e "\007" || echo -
 alias avc='./external/selinux/prebuilts/bin/audit2allow -p out/target/product/z3/root/sepolicy -i '
 alias sshtemp='ssh -o "UserKnownHostsFile /dev/null"' 
 
+alias cdex='abcde -o '"mp3:-b 192"'
+
 #export USE_NINJA=false
 export JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8192m"
 export ANDROID_JACK_VM_ARGS=$JACK_SERVER_VM_ARGUMENTS
