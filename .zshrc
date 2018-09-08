@@ -127,3 +127,4 @@ autoload bashcompinit
 bashcompinit
 FILE=/usr/share/bash-completion/completions/VBoxManage && test -f $FILE && source $FILE
 FILE=~/.zshfct_android && test -f $FILE && source $FILE
+FILE=~/prompt_nailyk_setup && test -f $FILE && source $FILE
