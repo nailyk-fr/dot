@@ -126,6 +126,16 @@ ins_sudo () {
 zle -N ins-sudo ins_sudo
 bindkey "^f" ins-sudo
 
+mkcd() {
+  if [[ ${1:-} ]] then
+    mkdir ${1}
+    cd ${1}
+  else
+	echo "To create and cd into newly created directory"
+  fi
+}
+
+
 export LC_ALL=fr_FR.UTF-8
 autoload bashcompinit
 bashcompinit
