@@ -118,9 +118,13 @@ ssh() {
     esac
 }
 
-ins_sudo () { zle beginning-of-line; zle -U "sudo " }
+ins_sudo () {
+  prefix="sudo"
+  BUFFER="$prefix $BUFFER"
+  CURSOR=$(($CURSOR + $#prefix + 1))
+}
 zle -N ins-sudo ins_sudo
-bindkey "^s" ins-sudo
+bindkey "^f" ins-sudo
 
 export LC_ALL=fr_FR.UTF-8
 autoload bashcompinit
