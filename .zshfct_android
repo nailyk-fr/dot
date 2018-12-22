@@ -2,7 +2,7 @@
 
 flashrom () {
     if [[  "$#" -eq 0  ]] then
-        echo usage: flashrom fichier \[-s num device\]; return 1; 
+        echo usage: flashrom fichier \[num device\]; return 1; 
 	fi
 	if [[ -n "$2" ]] then
 		DEV="-s $2"
