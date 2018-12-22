@@ -1,0 +1,14 @@
+# ignore everything
+*
+
+# then add only tracked files
+!.gitignore
+!.vimrc
+!.bashrc
+!.zshrc
+!.mednafen/mednafen-09x.cfg
+!.screenrc
+!.tmux.conf
+!.zshfct_android
+!51-android.rules
+!prompt_nailyk_setup
