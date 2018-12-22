@@ -7,3 +7,4 @@ set noexpandtab
 hi Comment ctermfg=LightBlue
 set ignorecase
 set smartcase
+set mouse=
