@@ -9,7 +9,10 @@ set ignorecase
 set smartcase
 set mouse=
 
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
+
+if ( has("autocmd") )
+  if ( ! (@% =~ 'COMMIT_EDITMSG' ))
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+      \| exe "normal! g'\"" | endif
+  endif
 endif
