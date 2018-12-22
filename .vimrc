@@ -8,3 +8,8 @@ hi Comment ctermfg=LightBlue
 set ignorecase
 set smartcase
 set mouse=
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
