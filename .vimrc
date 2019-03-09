@@ -9,6 +9,9 @@ set ignorecase
 set smartcase
 set mouse=
 
+" Highlight tabs
+set listchars=tab:>-,trail:-
+set list
 
 if ( has("autocmd") )
   if ( ! (@% =~ 'COMMIT_EDITMSG' ))
