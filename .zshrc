@@ -76,6 +76,7 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='grep --exclude-dir=.git --exclude-dir=.repo --exclude-dir=out -Rn'
 alias gd='git diff HEAD^'
+alias gdc='git diff --cached'
 alias gl='git log --pretty=oneline --abbrev-commit --decorate'
 alias gc='git commit -s'
 alias ga='git commit --amend -s'
@@ -86,6 +87,7 @@ alias bt='time mka recoveryimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || 
 alias br='time mka cookies 2>&1 | tee /tmp/buildFull && echo -e "\007" || echo -e "\007"'
 alias avc='./external/selinux/prebuilts/bin/audit2allow -p out/target/product/z3/root/sepolicy -i '
 alias sshtemp='ssh -o "UserKnownHostsFile /dev/null"' 
+alias v='vim'
 
 alias cdex='abcde -o "mp3:-b 192"'
 
