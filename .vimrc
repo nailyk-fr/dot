@@ -19,3 +19,7 @@ if ( has("autocmd") )
       \| exe "normal! g'\"" | endif
   endif
 endif
+
+" Display column guides
+set colorcolumn=81,121
+highlight ColorColumn guibg=red
