@@ -23,9 +23,6 @@ setopt HIST_VERIFY
 # Save the time and how long a command ran
 setopt EXTENDED_HISTORY
 
-FILE=/usr/share/bash-completion/completions/VBoxManage && test -f $FILE && source $FILE
-FILE=~/.zshfct_android && test -f $FILE && source $FILE
-FILE=~/prompt_nailyk_setup && test -f $FILE && source $FILE
 
 #pour la couleur et mettre le prompt_nailyk ici? 
 #host_color=cyan
@@ -68,6 +65,7 @@ esac
 # fait main
 autoload -Uz promptinit
 promptinit
+prompt nailyk
 setopt prompt_subst
 
 
@@ -141,3 +139,6 @@ mkcd() {
 export LC_ALL=fr_FR.UTF-8
 autoload bashcompinit
 bashcompinit
+FILE=/usr/share/bash-completion/completions/VBoxManage && test -f $FILE && source $FILE
+FILE=~/.zshfct_android && test -f $FILE && source $FILE
+FILE=~/prompt_nailyk_setup && test -f $FILE && source $FILE
