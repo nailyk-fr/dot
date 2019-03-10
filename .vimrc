@@ -22,7 +22,7 @@ endif
 
 " Display column guides
 set colorcolumn=81,121
-highlight ColorColumn guibg=red
+highlight ColorColumn ctermbg=235
 
 "highlight search
 set hlsearch
