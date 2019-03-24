@@ -21,7 +21,7 @@ if ( has("autocmd") )
 endif
 
 " Display column guides
-set colorcolumn=81,121
+set colorcolumn=51,81,121
 highlight ColorColumn ctermbg=235
 
 "highlight search
