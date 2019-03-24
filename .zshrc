@@ -23,6 +23,8 @@ setopt HIST_VERIFY
 # Save the time and how long a command ran
 setopt EXTENDED_HISTORY
 
+# keep only different lines into history
+setopt HIST_IGNORE_ALL_DUPS
 
 #pour la couleur et mettre le prompt_nailyk ici? 
 #host_color=cyan
