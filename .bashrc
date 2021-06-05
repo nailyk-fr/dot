@@ -100,6 +100,18 @@ fi
 #alias la='ls -A'
 #alias l='ls -CF'
 
+export SSH_AUTH_SOCK=~/.ssh-socket
+ssh-add -l > /dev/null 2>&1
+if test $? -eq 2; then
+  rm -f "${SSH_AUTH_SOCK}" >/dev/null 2>&1
+  SSH_SCRIPT=$(mktemp)
+  ssh-agent -a ${SSH_AUTH_SOCK} >| "${SSH_SCRIPT}"
+  source "${SSH_SCRIPT}"
+  echo ${SSH_AGENT_PID} >| ~/.ssh-agent-pid
+  rm -f "${SSH_SCRIPT}"
+fi
+
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
