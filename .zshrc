@@ -90,6 +90,7 @@ alias br='time mka cookies 2>&1 | tee /tmp/buildFull && echo -e "\007" || echo -
 alias avc='./external/selinux/prebuilts/bin/audit2allow -p out/target/product/z3/root/sepolicy -i '
 alias sshtemp='ssh -o "UserKnownHostsFile /dev/null"' 
 alias v='vim'
+alias sudo='sudo '
 
 alias cdex='abcde -o "mp3:-b 192"'
 
