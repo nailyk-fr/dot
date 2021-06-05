@@ -101,6 +101,18 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export WITH_SU=true
 
+export SSH_AUTH_SOCK=~/.ssh-socket
+ssh-add -l > /dev/null 2>&1
+if test $? -eq 2; then
+  rm -f "${SSH_AUTH_SOCK}" >/dev/null 2>&1
+  SSH_SCRIPT=$(mktemp)
+  ssh-agent -a ${SSH_AUTH_SOCK} >| "${SSH_SCRIPT}"
+  source "${SSH_SCRIPT}"
+  echo ${SSH_AGENT_PID} >| ~/.ssh-agent-pid
+  rm -f "${SSH_SCRIPT}"
+fi
+
+
 ssh() {
     case "$TERM" in 
 	  ## on est dans un tmux
