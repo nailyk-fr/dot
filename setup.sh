@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ## Use with : `curl -s https://raw.github.com/nailyk-fr/dot/setup/setup.sh | bash`
+##    or    : `wget -q https://raw.github.com/nailyk-fr/dot/setup/setup.sh -O - | bash`
 
 cd
 mv .bashrc .bashrc.orig
@@ -15,3 +16,5 @@ sudo ln -sf ~/.zshrc /root/
 sudo ln -sf ~/prompt_nailyk_setup /root/
 sudo chsh -s /bin/zsh $USER
 sudo chsh -s /bin/zsh root
+
+echo 'Envoy =)'
