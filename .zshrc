@@ -88,6 +88,8 @@ alias bb='time mka bootimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo
 alias bt='time mka recoveryimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo -e "\007"'
 alias br='time mka bacon 2>&1 | tee /tmp/buildFull && echo -e "\007" || echo -e "\007"'
 alias avc='./external/selinux/prebuilts/bin/audit2allow -p out/target/product/z3/root/sepolicy -i '
+
+alias src='source ~/.zshrc'
 alias sshtemp='ssh -o "UserKnownHostsFile /dev/null" -o "StrictHostKeyChecking no"' 
 alias scptemp='scp -o "UserKnownHostsFile /dev/null" -o "StrictHostKeyChecking no"'
 alias v='vim'
