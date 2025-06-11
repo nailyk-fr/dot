@@ -154,7 +154,7 @@ mkcd() {
 }
 
 
-export LC_ALL=fr_FR.UTF-8
+export LC_ALL=C.UTF-8
 autoload bashcompinit
 bashcompinit
 FILE=/usr/share/bash-completion/completions/VBoxManage && test -f $FILE && source $FILE
