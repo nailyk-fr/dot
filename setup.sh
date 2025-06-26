@@ -16,7 +16,12 @@ sudo ln -sf ~/.bashrc /root/
 sudo ln -sf ~/.vimrc /root/
 sudo ln -sf ~/.zshrc /root/
 sudo ln -sf ~/prompt_nailyk_setup /root/
-sudo chsh -s /bin/zsh $USER
-sudo chsh -s /bin/zsh root
+if $(which zsh); then
+  echo "ZSH detected, switching user's shell"
+  sudo chsh -s /bin/zsh $USER
+  sudo chsh -s /bin/zsh root
+else
+  echo "ZSH not installed"
+fi
 
 echo 'Enjoy =)'
