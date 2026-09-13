@@ -64,7 +64,30 @@ case "$TERM" in
       ;;
 esac
 
-# fait main
+##### bind keys for easier shurtcuts
+## home/end
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
+
+bindkey '^[OH' beginning-of-line
+bindkey '^[OF' end-of-line
+
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[4~' end-of-line
+
+## move words
+# Ctrl+Left / Ctrl+Right
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
+# Common alternative escape sequences used by some terminals
+bindkey '^[[5D' backward-word
+bindkey '^[[5C' forward-word
+bindkey '^[^[[D' backward-word
+bindkey '^[^[[C' forward-word
+
+# Prompt setup
 autoload -Uz promptinit
 promptinit
 prompt nailyk
