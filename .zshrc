@@ -35,7 +35,7 @@ setopt HIST_IGNORE_ALL_DUPS
 #fi
 #history_prompt1="%{$fg_bold[$history_color]%}[%{$reset_color%}"
 
-PATH="$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 
 case "$TERM" in 
