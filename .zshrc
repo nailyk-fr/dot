@@ -100,13 +100,6 @@ alias la='ls -A --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='grep --exclude-dir=.git --exclude-dir=.repo --exclude-dir=out -Rn'
-alias gd='git diff HEAD^'
-alias gdc='git diff --cached'
-alias gl='git log --pretty=oneline --abbrev-commit --decorate'
-alias gc='git commit -s'
-alias ga='git commit --amend -s'
-alias gp='git push gerrit HEAD:refs/for/android-8.1'
-alias gpd='git push gerrit HEAD:refs/drafts/android-8.1'
 alias bb='time mka bootimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo -e "\007"'
 alias bt='time mka recoveryimage 2>&1 | tee /tmp/buildBoot && echo -e "\007" || echo -e "\007"'
 alias br='time mka bacon 2>&1 | tee /tmp/buildFull && echo -e "\007" || echo -e "\007"'
@@ -178,6 +171,36 @@ mkcd() {
   fi
 }
 
+### Git aliases
+alias cdiff='diff --color=auto -rupN'
+alias gd='git diff HEAD^'
+alias gdc='git diff --cached'
+alias gl='git log --pretty=oneline --abbrev-commit --decorate'
+alias gc='git commit -s'
+alias ga='git commit --amend -s'
+alias gan='git commit --amend --no-edit -s'
+# grm is a function
+alias grc='git rebase --continue'
+# gp is a function
+
+### Git functions
+gp() {
+  t_remote=$(git remote)
+  t_branch=$(vcs_get_current_branch)
+  echo "Pushing to ${t_remote} ${t_branch}"
+  git push ${t_remote} ${t_branch} $*
+}
+
+grm() {
+  t_origin=$(git remote)
+  t_branch=$(git branch | grep "main\|master")
+  if [[ "xx${t_branch}xx" == "xxxx" ]]; then
+    echo "Unable to guess upstream branch"
+    return 1
+  fi
+  git rebase -i $(echo "${t_origin}" | xargs)/$(echo ${t_branch} | xargs)
+
+}
 
 export LC_ALL=C.UTF-8
 autoload bashcompinit
