@@ -207,6 +207,18 @@ grm() {
 
 }
 
+home_deploy() {
+  if [[ ! "${1:-}" ]] ; then
+    echo "a host must be provided"
+    return 1
+  else
+    echo "Deploying on ${1}"
+    T_TGT_HOST=${1}
+  fi
+
+  scp -O ~/.zshrc ~/prompt_nailyk_setup ~/.screenrc ~/.vimrc "${T_TGT_HOST}:~/"
+}
+
 export LC_ALL=C.UTF-8
 autoload bashcompinit
 bashcompinit
