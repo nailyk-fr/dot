@@ -12,6 +12,20 @@ who gives credit to Michel Daenzer <daenzer@debian.org>.
 EOF
 }
 
+# Color list
+#   black
+#   red
+#   green
+#   yellow
+#   blue
+#   magenta
+#   cyan
+#   white
+#   default (terminal default foreground/background)
+#
+
+
+
 prompt_nailyk_setup () {
 
 if [[ "$(whoami)" == "root" ]]; then
@@ -58,7 +72,7 @@ zstyle ':vcs_info:*' enable git cvs svn
 
 
 if [[ "$TERM" != "dumb" ]]; then
-    export PROMPT="%F{$c1}%n%f@%F{$c2}%m%f %(?,%F{green}%B:%)%b,%F{yellow}%? %F{$c4}%B:(%b)%f%F{white}%B %# %b%f"
+    export PROMPT="%F{$c1}%n%f@%F{$c2}%M%f %(?,%F{green}%B:%)%b,%F{yellow}%? %F{$c4}%B:(%b)%f%F{white}%B %# %b%f"
     export RPROMPT=$'$(vcs_info_wrapper)'"%F{${1:-$c3}}%~%f"
 else
     export PROMPT="%(?..[%?] )%n@%m:%~> "

@@ -55,7 +55,7 @@ case "$TERM" in
     (screen-256color)
       function preexec()
       {   
-          printf "\ek$1\e\\"
+          printf '\ek%s\e\\' "$1"
         }   
       function precmd()
       {   
@@ -137,10 +137,10 @@ ssh() {
 	  ## on est dans un tmux
 	(screen)
 	    #tmux rename-window "$*"
-	    printf "\033k$*\033\\"
+	    printf '\033k%s\033\\' "$*"
 	    command ssh "$@"
 	    #tmux rename-window "${USER}@${HOST}"
-	    printf "\033k${HOST}\033\\"
+	    printf '\033k%s\033\\' "${HOST}"
 	;;
 	  ## on est dans un screen
 	(screen-256color)
