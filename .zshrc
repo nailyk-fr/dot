@@ -120,7 +120,12 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export WITH_SU=true
 
-export SSH_AUTH_SOCK=~/.ssh-socket
+MY_AGENT_SOCK="$HOME/.ssh-socket"
+
+if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
+    export SSH_AUTH_SOCK="$MY_AGENT_SOCK"
+fi
+
 ssh-add -l > /dev/null 2>&1
 if test $? -eq 2; then
   rm -f "${SSH_AUTH_SOCK}" >/dev/null 2>&1
